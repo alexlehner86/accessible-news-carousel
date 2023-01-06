@@ -1,1 +1,14 @@
-<p>hello world!</p>
+<div
+    class="carousel-items"
+    aria-live="polite"
+>
+    <div
+        *ngFor="let item of newsItems; let i = index"
+        class="news-item"
+        role="group"
+        [attr.aria-roledescription]="slideDescription"
+        [attr.aria-label]="(i+1) + ' ' + slideLabel + ' ' + newsItems.length"
+    >
+        <img [src]="item.imageUrl" alt="">
+    </div>
+</div>

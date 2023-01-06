@@ -1,3 +1,21 @@
 :host {
     display: block;
 }
+
+.carousel-items {
+    position: relative;
+    height: var(--news-carousel-height, 25rem);
+    width: var(--news-carousel-width, 50rem);
+
+    .news-item {
+        position: absolute;
+        height: inherit;
+        width: inherit;
+
+        img {
+            object-fit: cover;
+            height: inherit;
+            width: inherit;
+        }
+    }
+}
