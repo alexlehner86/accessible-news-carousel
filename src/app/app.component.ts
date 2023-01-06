@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 
+import { NewsCarouselComponent } from './components/news-carousel/news-carousel.component';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    standalone: true,
+    selector: 'app-root',
+    imports: [NewsCarouselComponent],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'accessible-news-carousel';
+export class CarouselDemoAppComponent {
+    title = 'accessible-news-carousel';
 }

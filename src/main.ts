@@ -1,7 +1,6 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
 
-import { AppModule } from './app/app.module';
+import { CarouselDemoAppComponent } from './app/app.component';
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
+bootstrapApplication(CarouselDemoAppComponent)
   .catch(err => console.error(err));

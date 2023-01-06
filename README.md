@@ -1,5 +1,7 @@
 # AccessibleNewsCarousel
 
+An accessible, responsive news carousel provided as an Angular standalone component. WORK IN PROGRESS!
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
 ## Development server
