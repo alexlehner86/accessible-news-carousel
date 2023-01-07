@@ -22,6 +22,12 @@ export interface NewsCarouselItem {
     link: string;
 }
 
+export enum NewsCarouselHeadingLevel {
+    Level2,
+    Level3,
+    Level4,
+}
+
 export enum NewsCarouselAnimationDirection {
     FromLeft = 'FromLeft',
     FromRight = 'FromRight',

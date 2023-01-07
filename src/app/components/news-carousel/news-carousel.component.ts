@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, Input } from '@angular/core';
 
-import { NewsCarouselAnimationDirection, NewsCarouselConfig, NewsCarouselItem } from './news-carousel.interface';
+import {
+    NewsCarouselAnimationDirection,
+    NewsCarouselConfig,
+    NewsCarouselHeadingLevel,
+    NewsCarouselItem,
+} from './news-carousel.interface';
 
 /**
  * TODO: describe component
@@ -35,12 +40,18 @@ export class NewsCarouselComponent {
         nextButtonLabel: 'Next slide',
         previousButtonLabel: 'Previous slide',
     }
+    /**
+     * The heading level to be used for each slide's heading. Default: \<h2\>
+     */
+    @Input() public slideHeadingLevel = NewsCarouselHeadingLevel.Level2;
 
     @HostBinding('attr.role') role = 'region';
     @HostBinding('attr.aria-roledescription')
     get carouselDescription() { return this.config.carouselDescription; }
 
     public readonly animDirection = NewsCarouselAnimationDirection;
+    public readonly headingLevel = NewsCarouselHeadingLevel;
+
     public currentDirection = NewsCarouselAnimationDirection.None;
     public currentActiveSlide = 0;
     public lastActiveSlide: number | null = null;

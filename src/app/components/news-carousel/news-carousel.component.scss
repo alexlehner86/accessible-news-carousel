@@ -18,11 +18,18 @@
 
 .carousel-items {
     position: relative;
+    // placeholder if image hasn't finished loading
     background: rgb(146, 146, 146);
+    cursor: pointer;
     height: inherit;
     width: inherit;
     overflow: hidden;
     z-index: 1;
+
+    &:focus-within {
+        outline: 0.25rem solid black;
+        outline-offset: 0.125rem;
+    }
 
     .news-item {
         position: absolute;
@@ -66,6 +73,10 @@
                 a[href] {
                     color: inherit;
                     text-decoration: underline;
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
             }
         }

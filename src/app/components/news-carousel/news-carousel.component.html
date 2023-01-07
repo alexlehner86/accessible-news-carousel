@@ -32,12 +32,19 @@
             [src]="item.imageUrl"
             alt
         >
-        <div class="slide-text">
-            <h2>
-                <a [href]="item.link">
-                    {{item.heading}}
-                </a>
+        <div
+            class="slide-text"
+            [ngSwitch]="slideHeadingLevel"
+        >
+            <h2 *ngSwitchCase="headingLevel.Level2">
+                <a [href]="item.link">{{item.heading}}</a>
             </h2>
+            <h3 *ngSwitchCase="headingLevel.Level3">
+                <a [href]="item.link">{{item.heading}}</a>
+            </h3>
+            <h4 *ngSwitchCase="headingLevel.Level4">
+                <a [href]="item.link">{{item.heading}}</a>
+            </h4>
             <p>{{item.textSnippet}}</p>
         </div>
     </div>
