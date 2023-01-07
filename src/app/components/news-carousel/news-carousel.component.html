@@ -1,3 +1,17 @@
+<div class="carousel-controls">
+    <button
+        type="button"
+        (click)="this.showPreviousSlide()"
+    >
+        {{config.previousButtonLabel}}
+    </button>
+    <button
+        type="button"
+        (click)="this.showNextSlide()"
+    >
+        {{config.nextButtonLabel}}
+    </button>
+</div>
 <div
     class="carousel-items"
     aria-live="polite"
@@ -5,10 +19,14 @@
     <div
         *ngFor="let item of newsItems; let i = index"
         class="news-item"
+        [ngClass]="{'active': activeSlide === i}"
         role="group"
-        [attr.aria-roledescription]="slideDescription"
-        [attr.aria-label]="(i+1) + ' ' + slideLabel + ' ' + newsItems.length"
+        [attr.aria-roledescription]="config.slideDescription"
+        [attr.aria-label]="(i+1) + ' ' + config.slideLabel + ' ' + newsItems.length"
     >
-        <img [src]="item.imageUrl" alt="">
+        <img
+            [src]="item.imageUrl"
+            alt
+        >
     </div>
 </div>

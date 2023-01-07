@@ -1,16 +1,32 @@
 :host {
     display: block;
+    position: relative;
+    height: var(--news-carousel-height, 25rem);
+    width: var(--news-carousel-width, 50rem);
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 2;
 }
 
 .carousel-items {
     position: relative;
-    height: var(--news-carousel-height, 25rem);
-    width: var(--news-carousel-width, 50rem);
+    height: inherit;
+    width: inherit;
+    z-index: 1;
 
     .news-item {
         position: absolute;
         height: inherit;
         width: inherit;
+        visibility: hidden;
+
+        &.active {
+            visibility: visible;
+        }
 
         img {
             object-fit: cover;
