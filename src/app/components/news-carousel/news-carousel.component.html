@@ -15,11 +15,15 @@
 <div
     class="carousel-items"
     aria-live="polite"
+    [ngClass]="{
+        'animate-from-left': currentDirection === animDirection.FromLeft,
+        'animate-from-right': currentDirection === animDirection.FromRight
+    }"
 >
     <div
         *ngFor="let item of newsItems; let i = index"
         class="news-item"
-        [ngClass]="{'active': activeSlide === i}"
+        [ngClass]="{'active': currentActiveSlide === i, 'moved-out': lastActiveSlide === i}"
         role="group"
         [attr.aria-roledescription]="config.slideDescription"
         [attr.aria-label]="(i+1) + ' ' + config.slideLabel + ' ' + newsItems.length"
@@ -28,5 +32,13 @@
             [src]="item.imageUrl"
             alt
         >
+        <div class="slide-text">
+            <h2>
+                <a [href]="item.link">
+                    {{item.heading}}
+                </a>
+            </h2>
+            <p>{{item.textSnippet}}</p>
+        </div>
     </div>
 </div>

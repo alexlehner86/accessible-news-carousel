@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, Input } from '@angular/core';
 
-import { NewsCarouselConfig, NewsCarouselItem } from './news-carousel.interface';
+import { NewsCarouselAnimationDirection, NewsCarouselConfig, NewsCarouselItem } from './news-carousel.interface';
 
 /**
  * TODO: describe component
- * Set height via CSS variable "--news-carousel-height" and width via "--news-carousel-width".
+ * Set height via CSS variable "--news-carousel-max-height" and width via "--news-carousel-max-width".
+ * Style text containers with: --carousel-text-background and --carousel-text-color
  */
 @Component({
     standalone: true,
@@ -25,7 +26,7 @@ export class NewsCarouselComponent {
      */
     @Input() public newsItems!: NewsCarouselItem[];
     /**
-     * The role description for each slide container. Default: "slide"
+     * Configuration for the various carousel sections. Default values in English.
      */
     @Input() public config: NewsCarouselConfig = {
         carouselDescription: 'carousel',
@@ -35,21 +36,24 @@ export class NewsCarouselComponent {
         previousButtonLabel: 'Previous slide',
     }
 
-    /**
-     * The role description of the carousel container. Default: "carousel"
-     */
+    @HostBinding('attr.role') role = 'region';
     @HostBinding('attr.aria-roledescription')
     get carouselDescription() { return this.config.carouselDescription; }
 
-    @HostBinding('attr.role') role = 'region';
-
-    public activeSlide = 0;
+    public readonly animDirection = NewsCarouselAnimationDirection;
+    public currentDirection = NewsCarouselAnimationDirection.None;
+    public currentActiveSlide = 0;
+    public lastActiveSlide: number | null = null;
 
     public showPreviousSlide(): void {
-        this.activeSlide = this.activeSlide - 1 < 0 ? this.newsItems.length - 1 : this.activeSlide - 1;
+        this.currentDirection = NewsCarouselAnimationDirection.FromLeft;
+        this.lastActiveSlide = this.currentActiveSlide;
+        this.currentActiveSlide = this.currentActiveSlide - 1 < 0 ? this.newsItems.length - 1 : this.currentActiveSlide - 1;
     }
-
+    
     public showNextSlide(): void {
-        this.activeSlide = (this.activeSlide + 1) % this.newsItems.length;
+        this.currentDirection = NewsCarouselAnimationDirection.FromRight;
+        this.lastActiveSlide = this.currentActiveSlide;
+        this.currentActiveSlide = (this.currentActiveSlide + 1) % this.newsItems.length;
     }
 }

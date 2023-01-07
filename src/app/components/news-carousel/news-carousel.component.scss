@@ -1,8 +1,12 @@
 :host {
     display: block;
     position: relative;
-    height: var(--news-carousel-height, 25rem);
-    width: var(--news-carousel-width, 50rem);
+    height: var(--news-carousel-max-height, 25rem);
+    width: min(var(--news-carousel-max-width, 50rem), calc(100vw - 2rem));
+}
+
+:host * {
+    box-sizing: border-box;
 }
 
 .carousel-controls {
@@ -14,8 +18,10 @@
 
 .carousel-items {
     position: relative;
+    background: rgb(146, 146, 146);
     height: inherit;
     width: inherit;
+    overflow: hidden;
     z-index: 1;
 
     .news-item {
@@ -33,5 +39,117 @@
             height: inherit;
             width: inherit;
         }
+
+        .slide-text {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+
+            h2,
+            h3,
+            h4,
+            p {
+                background: var(--carousel-text-background, rgb(0 0 0 / 0.7));
+                color: var(--carousel-text-color, white);
+                border-radius: 0.25rem;
+                max-width: 60%;
+                margin: 0;
+                padding: 0.5em 0.75rem;
+                text-align: center;
+
+                a[href] {
+                    color: inherit;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        @media screen and (max-width: 30rem) {
+            .slide-text {
+                bottom: 0.5rem;
+
+                h2,
+                h3,
+                h4 {
+                    max-width: calc(100% - 1rem);
+                }
+
+                p {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &.animate-from-left .news-item {
+        &.active {
+            animation: slide-in-from-left 0.5s forwards;
+        }
+
+        &.moved-out {
+            animation: slide-out-to-right 0.5s forwards;
+            border-left: 0.125rem solid white;
+        }
+    }
+
+    &.animate-from-right .news-item {
+        &.active {
+            animation: slide-in-from-right 0.5s forwards;
+        }
+
+        &.moved-out {
+            animation: slide-out-to-left 0.5s forwards;
+            border-right: 0.125rem solid white;
+        }
+    }
+}
+
+// Keyframes for slide animation from left to right
+@keyframes slide-in-from-left {
+    0% {
+        transform: translateX(-100%);
+        visibility: visible;
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-out-to-right {
+    0% {
+        transform: translateX(0%);
+        visibility: visible;
+    }
+    100% {
+        transform: translateX(100%);
+        visibility: hidden;
+    }
+}
+
+// Keyframes for slide animation from right to left
+@keyframes slide-in-from-right {
+    0% {
+        transform: translateX(100%);
+        visibility: visible;
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-out-to-left {
+    0% {
+        transform: translateX(0%);
+        visibility: visible;
+    }
+    100% {
+        transform: translateX(-100%);
+        visibility: hidden;
     }
 }

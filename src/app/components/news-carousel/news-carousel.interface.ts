@@ -21,3 +21,9 @@ export interface NewsCarouselItem {
     imageUrl: string;
     link: string;
 }
+
+export enum NewsCarouselAnimationDirection {
+    FromLeft = 'FromLeft',
+    FromRight = 'FromRight',
+    None = 'None',
+}
