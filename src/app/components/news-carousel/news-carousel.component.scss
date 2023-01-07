@@ -14,6 +14,40 @@
     top: 0.5rem;
     right: 0.5rem;
     z-index: 2;
+    display: flex;
+
+    $icon-height: 2rem;
+    $icon-width: 3rem;
+    $icon-padding: 0.25rem;
+    button {
+        background: var(--carousel-button-background, rgb(0 0 0 / 0.5));
+        border: none;
+        border-radius: 0.25rem;
+        color: var(--carousel-button-color, white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc($icon-height + ($icon-padding * 2));
+        width: calc($icon-width + ($icon-padding * 2));
+        margin: 0;
+        padding: 0;
+
+        &:not(:first-of-type) {
+            rotate: 180deg;
+            margin-left: 0.5rem;
+        }
+
+        &:focus,
+        &:hover {
+            outline: 0.125rem solid var(--carousel-button-color, white);
+            outline-offset: -0.25rem;
+        }
+
+        svg {
+            height: $icon-height;
+            width: $icon-width;
+        }
+    }
 }
 
 .carousel-items {

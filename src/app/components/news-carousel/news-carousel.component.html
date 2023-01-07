@@ -1,15 +1,17 @@
 <div class="carousel-controls">
     <button
         type="button"
+        [attr.aria-label]="config.previousButtonLabel"
         (click)="this.showPreviousSlide()"
     >
-        {{config.previousButtonLabel}}
+        <ng-container *ngTemplateOutlet="arrowIcon"></ng-container>
     </button>
     <button
         type="button"
+        [attr.aria-label]="config.nextButtonLabel"
         (click)="this.showNextSlide()"
     >
-        {{config.nextButtonLabel}}
+        <ng-container *ngTemplateOutlet="arrowIcon"></ng-container>
     </button>
 </div>
 <div
@@ -49,3 +51,16 @@
         </div>
     </div>
 </div>
+<ng-template #arrowIcon>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="32"
+        viewBox="0 0 48 32"
+    >
+        <path
+            fill="currentColor"
+            d="m 17.949219,4.625 c -0.433334,0.01667 -0.782162,0.159115 -1.048828,0.425781 l -9.8496098,9.84961 c -0.1666666,0.166666 -0.2848958,0.333333 -0.3515624,0.5 -0.066667,0.166666 -0.099609,0.348828 -0.099609,0.548828 0,0.2 0.032943,0.384114 0.099609,0.550781 0.066667,0.166667 0.1848958,0.333333 0.3515624,0.5 l 9.8496098,9.800781 c 0.3,0.3 0.657552,0.449219 1.074218,0.449219 0.416667,0 0.776172,-0.149219 1.076172,-0.449219 0.3,-0.3 0.440495,-0.659505 0.423828,-1.076172 -0.01667,-0.416666 -0.157161,-0.758724 -0.423828,-1.02539 l -7.25,-7.105422 H 40.5 c 0.433333,0 0.790885,-0.140495 1.074219,-0.423828 C 41.857552,16.886635 42,16.382552 42,15.949219 42,15.515885 41.857552,15.013755 41.574219,14.730422 41.290885,14.447089 40.933333,14.304641 40.5,14.304641 H 11.800781 l 7.25,-7.105422 C 19.353787,6.902255 19.5,6.541667 19.5,6.125 c 0,-0.416667 -0.149219,-0.774219 -0.449219,-1.074219 -0.3,-0.3 -0.668229,-0.442448 -1.101562,-0.425781 z"
+        ></path>
+    </svg>
+</ng-template>
