@@ -15,11 +15,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Usage Notes
 Set a label for assistive technologies via the input property `carouselLabel`. Then provide the slides via the input property `newsItems`. The data items have to conform to the `NewsCarouselItem` interface.
 
+### Gesture Configuration
+For horizontal swiping to work, you need to install the [Hammer.js library](https://www.npmjs.com/package/hammerjs) and provide Angular's `HammerModule` ([see docs](https://angular.io/api/platform-browser/HammerModule)) as well as a `HammerGestureConfig` ([see docs](https://angular.io/api/platform-browser/HammerGestureConfig)).
+
+To prevent a conflict with the standard scroll behaviour of browsers, you should limit the handled gestures to horizontal swipes via the following override: `'swipe': { direction: Hammer.DIRECTION_HORIZONTAL }`. Either create your own config or use the `NewsCarouselHammerConfig` from this repo.
+
+### Optional Input Properties
 Optionally, you can override the input property `config` for the generic labels and role descriptions used by assistive technologies. The default values are in English (e.g. "carousel" as the role description for the outer container).
 
 Set the input property `slideHeadingLevel` to ensure a correct heading hierarchy on your web page (default: &lt;h2&gt;). For example: If you include the carousel after a heading with level 2, the you should set the level for the slide headings to `NewsCarouselHeadingLevel.Level3`.
 
-## Customization Options
+### Customization Options
 
 The following style properties can be customized via CSS variables:
 - `--news-carousel-height`: Set the height of the carousel.
