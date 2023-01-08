@@ -21,8 +21,6 @@
         'animate-from-left': currentDirection === animDirection.FromLeft,
         'animate-from-right': currentDirection === animDirection.FromRight
     }"
-    (swipeleft)="this.showNextSlide()"
-    (swiperight)="this.showPreviousSlide()"
 >
     <div
         *ngFor="let item of newsItems; let i = index"
@@ -31,6 +29,8 @@
         role="group"
         [attr.aria-roledescription]="config.slideDescription"
         [attr.aria-label]="(i+1) + ' ' + config.slideLabel + ' ' + newsItems.length"
+        (swipeleft)="this.showNextSlide()"
+        (swiperight)="this.showPreviousSlide()"
     >
         <a
             [href]="item.link"

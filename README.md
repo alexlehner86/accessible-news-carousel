@@ -2,14 +2,17 @@
 
 Angular standalone component that displays an accessible, animated, responsive carousel with several news slides. Check out the [live version](https://alexlehner86.github.io/accessible-news-carousel/).
 
+The demo includes a news carousel with customized styling as well as a version with the default settings and styling.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
 ## Features
 
 - Standalone component for direct use in your Angular 15 application.
 - Accessible implementation (semantic markup, keyboard operability) following the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/).
-- Responsive design using [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries).
+- Responsive design using [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries). Warning: Container Queries are [not supported in all browsers yet](https://caniuse.com/css-container-queries)!
 - Horizontal slide in/out animation.
+- Swipe gesture support.
 - Customizable design using CSS Variables.
 
 ## Usage Notes
