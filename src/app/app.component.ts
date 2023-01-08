@@ -1,3 +1,5 @@
+import 'hammerjs';
+
 import { Component } from '@angular/core';
 
 import { NewsCarouselComponent } from './components/news-carousel/news-carousel.component';
@@ -25,6 +27,12 @@ export class CarouselDemoAppComponent {
             textSnippet: 'The artificial intelligence impresses with thoughtful and well composed answers. But it\'s not perfect.',
             imageUrl: '/assets/social_sharing_robot_and_human.jpg',
             link: 'https://www.oidaisdes.org/chatgpt-accessibility-myths.en',
+        },
+        {
+            heading: 'Common ARIA mistakes and how to avoid them',
+            textSnippet: 'ARIA roles and attributes can make your website more accessible, if you know what you\'re doing.',
+            imageUrl: '/assets/social_sharing_confused_couple.jpg',
+            link: 'https://www.oidaisdes.org/common-aria-mistakes.en',
         },
         {
             heading: 'CSS tweaks for better visibility in Forced Colors Mode',

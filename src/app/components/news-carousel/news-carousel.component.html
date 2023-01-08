@@ -21,6 +21,8 @@
         'animate-from-left': currentDirection === animDirection.FromLeft,
         'animate-from-right': currentDirection === animDirection.FromRight
     }"
+    (swipeleft)="this.showNextSlide()"
+    (swiperight)="this.showPreviousSlide()"
 >
     <div
         *ngFor="let item of newsItems; let i = index"

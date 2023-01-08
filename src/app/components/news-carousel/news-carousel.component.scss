@@ -18,6 +18,9 @@ app-news-carousel *:where(h2, h3, h4) {
     font-weight: bold;
 }
 
+/****************************
+ * Carousel Controls Styling
+ ****************************/
 app-news-carousel .news-carousel-controls {
     position: absolute;
     top: 0.5rem;
@@ -59,6 +62,9 @@ app-news-carousel .news-carousel-controls {
     }
 }
 
+/**************************
+ * Carousel Slides Styling
+ **************************/
 app-news-carousel .news-carousel-items {
     position: relative;
     // placeholder if image hasn't finished loading
@@ -159,6 +165,9 @@ app-news-carousel .news-item {
     }
 }
 
+/***************************
+ * Carousel Slide Animation
+ ***************************/
 app-news-carousel .news-carousel-items.animate-from-left .news-item {
     &.active {
         animation: slide-in-from-left 0.5s forwards;

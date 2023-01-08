@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { HammerModule } from '@angular/platform-browser';
 
 import {
     NewsCarouselAnimationDirection,
@@ -9,14 +10,25 @@ import {
 } from './news-carousel.interface';
 
 /**
- * TODO: describe component
- * Set height via CSS variable "--news-carousel-max-height" and width via "--news-carousel-max-width".
- * Style text containers with: --carousel-text-background and --carousel-text-color
+ * Standalone component that displays an accessible, animated, responsive carousel with several news slides.
+ * You need to provide the `carouselLabel` and the `newsItems` that are rendered as individual slides.
+ * The carousel includes two arrow icon buttons that allow the users to switch between slides.
+ * Optionally, you can override the `config` for the generic labels and role descriptions used by assistive technologies.
+ * The default values are in English (e.g. "carousel" as the role description for the outer container).
+ * Set the `slideHeadingLevel` to ensure a correct heading hierarchy on your web page (default: \<h2\>).
+ * The following style properties can be customized via CSS variables:
+ * - "--news-carousel-height": Set the height of the carousel.
+ * - "--news-carousel-max-width": Set the max width of the carousel. The carousel's actual width is responsive to its container.
+ * - "--news-carousel-button-background": The background (color) of the previous and next buttons.
+ * - "--news-carousel-button-color": The color of the arrow icon in the previous and next buttons.
+ * - "--carousel-text-background": The background (color) of the slides' text container.
+ * - "--carousel-text-color": The text color of the slides' text container.
+ * - "--news-carousel-slide-focus-color": The color of the slides' focus indicator.
  */
 @Component({
     standalone: true,
     selector: 'app-news-carousel[carouselLabel][newsItems]',
-    imports: [CommonModule],
+    imports: [CommonModule, HammerModule],
     templateUrl: './news-carousel.component.html',
     styleUrls: ['./news-carousel.component.scss'],
     encapsulation: ViewEncapsulation.None
