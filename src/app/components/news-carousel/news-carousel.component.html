@@ -16,7 +16,7 @@
 </div>
 <div
     class="carousel-items"
-    aria-live="polite"
+    aria-live="assertive"
     [ngClass]="{
         'animate-from-left': currentDirection === animDirection.FromLeft,
         'animate-from-right': currentDirection === animDirection.FromRight
@@ -30,10 +30,17 @@
         [attr.aria-roledescription]="config.slideDescription"
         [attr.aria-label]="(i+1) + ' ' + config.slideLabel + ' ' + newsItems.length"
     >
-        <img
-            [src]="item.imageUrl"
-            alt
+        <a
+            [href]="item.link"
+            class="image-link"
+            aria-hidden="true"
+            tabindex="-1"
         >
+            <img
+                [src]="item.imageUrl"
+                alt
+            >
+        </a>
         <div
             class="slide-text"
             [ngSwitch]="slideHeadingLevel"
