@@ -3,3 +3,15 @@ body {
     margin: 0;
     padding: 1rem;
 }
+
+// Global overwrites
+app-news-carousel.custom-styled-carousel {
+    h2 {
+        font-size: 1.7rem;
+        text-transform: uppercase;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+}

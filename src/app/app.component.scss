@@ -1,3 +1,8 @@
-app-news-carousel {
-    --carousel-text-background: rgb(91 10 30 / 0.9);
+app-news-carousel.custom-styled-carousel {
+    --news-carousel-height: 30rem;
+    --news-carousel-max-width: 52rem;
+    --news-carousel-button-background: rgb(255 255 255 / 0.8);
+    --news-carousel-button-color: darkblue;
+    --news-carousel-text-background: rgb(91 10 30 / 0.9);
+    --news-carousel-slide-focus-color: darkblue;
 }

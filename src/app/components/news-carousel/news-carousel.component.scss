@@ -1,15 +1,24 @@
-:host {
+app-news-carousel {
+    box-sizing: border-box;
+    container-name: news-carousel;
+    container-type: inline-size;
     display: block;
     position: relative;
-    height: var(--news-carousel-max-height, 25rem);
-    width: min(var(--news-carousel-max-width, 50rem), calc(100vw - 2rem));
+    height: var(--news-carousel-height, 25rem);
+    width: var(--news-carousel-max-width, 50rem);
+    max-width: 100%;
 }
 
-:host * {
+app-news-carousel * {
     box-sizing: border-box;
 }
 
-.carousel-controls {
+app-news-carousel *:where(h2, h3, h4) {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+app-news-carousel .news-carousel-controls {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -20,10 +29,10 @@
     $icon-width: 3rem;
     $icon-padding: 0.25rem;
     button {
-        background: var(--carousel-button-background, rgb(0 0 0 / 0.5));
+        background: var(--news-carousel-button-background, rgb(0 0 0 / 0.5));
         border: none;
         border-radius: 0.25rem;
-        color: var(--carousel-button-color, white);
+        color: var(--news-carousel-button-color, white);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -39,7 +48,7 @@
 
         &:focus,
         &:hover {
-            outline: 0.125rem solid var(--carousel-button-color, white);
+            outline: 0.188rem solid var(--news-carousel-button-color, white);
             outline-offset: -0.25rem;
         }
 
@@ -50,31 +59,34 @@
     }
 }
 
-.carousel-items {
+app-news-carousel .news-carousel-items {
     position: relative;
     // placeholder if image hasn't finished loading
     background: rgb(146, 146, 146);
     height: inherit;
     width: inherit;
+    max-width: 100%;
     overflow: hidden;
     z-index: 1;
 
+    // Provide focus indicator for the whole slide.
     &:focus-within {
-        outline: 0.25rem solid black;
+        outline: 0.25rem solid var(--news-carousel-slide-focus-color, black);
         outline-offset: 0.125rem;
     }
 
-    // Hide focus outline for image and heading links.
-    // Instead a focous outline is shown for the whole slide (see above).
+    // Hide focus indicator for image and heading links.
+    // Instead a focus indicator is shown for the whole slide (see above).
     a[href]:focus {
         outline: none;
     }
 }
 
-.news-item {
+app-news-carousel .news-item {
     position: absolute;
     height: inherit;
     width: inherit;
+    max-width: 100%;
     visibility: hidden;
 
     &.active {
@@ -100,17 +112,19 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        background: var(--carousel-text-background, rgb(0 0 0 / 0.7));
+        background: var(--news-carousel-text-background, rgb(0 0 0 / 0.8));
         border-radius: 0.5rem 0.5rem 0 0;
-        width: 60%;
+        width: max(60%, 25rem);
+        max-width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0.75rem;
         padding: 0.75em 0.75rem 1rem;
+        pointer-events: none;
 
         :is(h2, h3, h4, p) {
-            color: var(--carousel-text-color, white);
+            color: var(--news-carousel-text-color, white);
             margin: 0;
             padding: 0;
             text-align: center;
@@ -123,8 +137,10 @@
     }
 }
 
-@media screen and (max-width: 30rem) {
-    .news-item .slide-text {
+// Container Queries are not yet supported in all browsers.
+// See: https://caniuse.com/css-container-queries
+@container news-carousel (max-width: 28rem) {
+    app-news-carousel .news-item .slide-text {
         bottom: 0.5rem;
         border-radius: 0.5rem;
         width: calc(100% - 1rem);
@@ -134,7 +150,7 @@
         }
     }
 
-    .news-item.active .slide-text :is(h2, h3, h4) {
+    app-news-carousel .news-item.active .slide-text :is(h2, h3, h4) {
         visibility: hidden;
 
         a[href] {
@@ -143,7 +159,7 @@
     }
 }
 
-.carousel-items.animate-from-left .news-item {
+app-news-carousel .news-carousel-items.animate-from-left .news-item {
     &.active {
         animation: slide-in-from-left 0.5s forwards;
     }
@@ -154,7 +170,7 @@
     }
 }
 
-.carousel-items.animate-from-right .news-item {
+app-news-carousel .news-carousel-items.animate-from-right .news-item {
     &.active {
         animation: slide-in-from-right 0.5s forwards;
     }
@@ -169,7 +185,6 @@
 @keyframes slide-in-from-left {
     0% {
         transform: translateX(-100%);
-        visibility: visible;
     }
     100% {
         transform: translateX(0%);
@@ -191,7 +206,6 @@
 @keyframes slide-in-from-right {
     0% {
         transform: translateX(100%);
-        visibility: visible;
     }
     100% {
         transform: translateX(0%);

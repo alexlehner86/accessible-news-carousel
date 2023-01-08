@@ -2,6 +2,13 @@
 <app-news-carousel
     carouselLabel="Tech News"
     [newsItems]="newsItems"
+    class="custom-styled-carousel"
+></app-news-carousel>
+<h2>Carousel with default styling</h2>
+<app-news-carousel
+    carouselLabel="More Tech News"
+    [newsItems]="newsItems"
+    [slideHeadingLevel]="headingLevel.Level3"
 ></app-news-carousel>
 <h2>Other content</h2>
 <p>lorem ipsum dolum</p>

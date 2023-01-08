@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
 import {
     NewsCarouselAnimationDirection,
@@ -18,7 +18,8 @@ import {
     selector: 'app-news-carousel[carouselLabel][newsItems]',
     imports: [CommonModule],
     templateUrl: './news-carousel.component.html',
-    styleUrls: ['./news-carousel.component.scss']
+    styleUrls: ['./news-carousel.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class NewsCarouselComponent {
     /**
@@ -46,8 +47,7 @@ export class NewsCarouselComponent {
     @Input() public slideHeadingLevel = NewsCarouselHeadingLevel.Level2;
 
     @HostBinding('attr.role') role = 'region';
-    @HostBinding('attr.aria-roledescription')
-    get carouselDescription() { return this.config.carouselDescription; }
+    @HostBinding('attr.aria-roledescription') get carouselDescription() { return this.config.carouselDescription; }
 
     public readonly animDirection = NewsCarouselAnimationDirection;
     public readonly headingLevel = NewsCarouselHeadingLevel;

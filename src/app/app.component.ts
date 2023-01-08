@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NewsCarouselComponent } from './components/news-carousel/news-carousel.component';
-import { NewsCarouselItem } from './components/news-carousel/news-carousel.interface';
+import { NewsCarouselHeadingLevel, NewsCarouselItem } from './components/news-carousel/news-carousel.interface';
 
 @Component({
     standalone: true,
@@ -11,6 +11,8 @@ import { NewsCarouselItem } from './components/news-carousel/news-carousel.inter
     styleUrls: ['./app.component.scss']
 })
 export class CarouselDemoAppComponent {
+    public readonly headingLevel = NewsCarouselHeadingLevel;
+
     public newsItems: NewsCarouselItem[] = [
         {
             heading: '3 Ways how Web Developers also benefit from Accessibility',
