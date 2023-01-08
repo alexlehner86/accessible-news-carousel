@@ -7,7 +7,10 @@ import * as Hammer from 'hammerjs';
 export class NewsCarouselHammerConfig extends HammerGestureConfig {
     override overrides = {
         // override hammerjs default configuration
-        'swipe': { direction: Hammer.DIRECTION_HORIZONTAL },
+        'swipe': {
+            direction: Hammer.DIRECTION_HORIZONTAL,
+            threshold: 5
+        },
         'pinch': { enable: false },
         'rotate': { enable: false },
         'pan': { enable: false }
