@@ -16,7 +16,8 @@
 </div>
 <div
     class="news-carousel-items"
-    aria-live="assertive"
+    aria-live="polite"
+    aria-relevant="text"
     [ngClass]="{
         'animate-from-left': currentDirection === animDirection.FromLeft,
         'animate-from-right': currentDirection === animDirection.FromRight
