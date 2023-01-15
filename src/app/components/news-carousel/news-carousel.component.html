@@ -16,8 +16,6 @@
 </div>
 <div
     class="news-carousel-items"
-    aria-live="polite"
-    aria-relevant="text"
     [ngClass]="{
         'animate-from-left': currentDirection === animDirection.FromLeft,
         'animate-from-right': currentDirection === animDirection.FromRight
@@ -26,10 +24,10 @@
     <div
         *ngFor="let item of newsItems; let i = index"
         class="news-item"
-        [ngClass]="{'active': currentActiveSlide === i, 'moved-out': lastActiveSlide === i}"
+        [ngClass]="{'active': activeSlideIndex === i, 'moved-out': lastActiveSlideIndex === i}"
         role="group"
         [attr.aria-roledescription]="config.slideDescription"
-        [attr.aria-label]="(i+1) + ' ' + config.slideLabel + ' ' + newsItems.length"
+        [attr.aria-label]="(i + 1) + ' ' + config.slideLabel + ' ' + newsItems.length"
         (swipeleft)="this.showNextSlide()"
         (swiperight)="this.showPreviousSlide()"
     >
@@ -60,6 +58,13 @@
             <p>{{item.textSnippet}}</p>
         </div>
     </div>
+</div>
+<div
+    class="active-slide-live-region"
+    aria-live="polite"
+>
+    {{config.slideDescription + ' ' + (activeSlideIndex + 1) + ' ' + config.slideLabel + ' ' + newsItems.length + ':'}}
+    {{newsItems[activeSlideIndex].heading}}
 </div>
 <ng-template #arrowIcon>
     <svg
