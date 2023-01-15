@@ -4,8 +4,6 @@ Angular standalone component that displays an accessible, animated, responsive c
 
 The demo includes a news carousel with customized styling as well as a version with the default settings and styling.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
-
 ## Features
 
 - Standalone component for direct use in your Angular 15 application.

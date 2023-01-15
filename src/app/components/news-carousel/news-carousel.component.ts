@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { HammerModule } from '@angular/platform-browser';
 
 import {
@@ -33,14 +33,14 @@ import {
     styleUrls: ['./news-carousel.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class NewsCarouselComponent {
+export class NewsCarouselComponent implements OnInit {
     /**
      * The aria label for the carousel container.
      * It should convey to screenreader users what the carousel is about.
      */
     @HostBinding('attr.aria-label') @Input() public carouselLabel!: string;
     /**
-     * The news items to be displayed as slides.
+     * The news items to be displayed as slides. Array has to contain at least two items.
      */
     @Input() public newsItems!: NewsCarouselItem[];
     /**
@@ -64,19 +64,25 @@ export class NewsCarouselComponent {
     public readonly animDirection = NewsCarouselAnimationDirection;
     public readonly headingLevel = NewsCarouselHeadingLevel;
 
+    public activeSlideIndex = 0;
     public currentDirection = NewsCarouselAnimationDirection.None;
-    public currentActiveSlide = 0;
-    public lastActiveSlide: number | null = null;
+    public lastActiveSlideIndex: number | null = null;
+
+    public ngOnInit(): void {
+        if (this.newsItems.length < 2) {
+            throw new Error('NewsCarouselComponent: newsItems array has to contain at least two items.')
+        }
+    }
 
     public showPreviousSlide(): void {
         this.currentDirection = NewsCarouselAnimationDirection.FromLeft;
-        this.lastActiveSlide = this.currentActiveSlide;
-        this.currentActiveSlide = this.currentActiveSlide - 1 < 0 ? this.newsItems.length - 1 : this.currentActiveSlide - 1;
+        this.lastActiveSlideIndex = this.activeSlideIndex;
+        this.activeSlideIndex = this.activeSlideIndex - 1 < 0 ? this.newsItems.length - 1 : this.activeSlideIndex - 1;
     }
     
     public showNextSlide(): void {
         this.currentDirection = NewsCarouselAnimationDirection.FromRight;
-        this.lastActiveSlide = this.currentActiveSlide;
-        this.currentActiveSlide = (this.currentActiveSlide + 1) % this.newsItems.length;
+        this.lastActiveSlideIndex = this.activeSlideIndex;
+        this.activeSlideIndex = (this.activeSlideIndex + 1) % this.newsItems.length;
     }
 }
